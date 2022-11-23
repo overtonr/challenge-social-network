@@ -1,4 +1,5 @@
 const {connect, connection } = require('mongoose');
+//needs process.env.MONGODB_URI if deploying to herokue
 
 //Local connection to MongoDB
 //name of DB: socialmediaDB

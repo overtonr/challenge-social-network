@@ -1,0 +1,4 @@
+//reactionID
+//reactionBody
+//username
+//createdAt
