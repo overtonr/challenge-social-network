@@ -202,13 +202,6 @@ This will not be a model, but rather will be used as the `reaction` field's subd
 
 * `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
 
-## Grading Requirements
-
-This challenge is graded based on the following criteria:
-
-### Deliverables: 10%
-
-* Your GitHub repository containing your application code.
 
 ### Walkthrough Video: 37%
 
@@ -242,29 +235,8 @@ This challenge is graded based on the following criteria:
 
   * Uses functionality to format queried timestamps properly.
 
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains a high-quality README with description and a link to a walkthrough video.
 
 ### Bonus: +10 Points
 
 * Application deletes a user's associated thoughts when the user is deleted.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* A walkthrough video demonstrating the functionality of the application and all of the acceptance criteria being met.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
----
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+//some type of cascade upon delete method equiv in mongo

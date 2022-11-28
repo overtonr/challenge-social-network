@@ -11,3 +11,11 @@ const reactionSchema = new Schema({
    username:{}, //string, required, trimmed
    createdAt: {} //date, set default to current, getter to format timestamp on query
 });
+
+//shouldnt be a model, but a sub doc in thought model
+
+thoughtSchema
+ .virtual('userReaction')
+ .get(function(){
+    
+ })
