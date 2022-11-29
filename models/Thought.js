@@ -1,14 +1,39 @@
-const { Schema, model } = require("mongoose");
-const userSchema = require('./User');
+const { Schema, Types, model} = require("mongoose");
 
 
 //subdocument
-const reactionSchema = new Schema({
-    reactionId: {},//mongoose objectID data type, default set to new objectId
-    reactionBody:{}, // string, required, 280 max
-    username:{}, //string, required
-    createdAt: {} //date, set default to current, getter to format timestamp on query
-});
+const reactionSchema = new Schema(
+    {
+    reactionId: {
+        //mongoose objectID data type, default set to new objectId
+        type: Schema.Types.ObjectId,
+        default: () => new Types.ObjectId(),
+
+    },
+    reactionBody:{
+        // string, required, 280 max
+        type: String,
+        required: true,
+        maxLength: 280,
+    },
+    username:{
+        //string, required
+        type: String,
+        required: true,
+    },
+    createdAt: {
+        //date, set default to current, getter to format timestamp on query
+        type: Date,
+        default: Date.now,
+        // get: , for formatting 
+    },
+    },
+    {
+        toJSON: {getters: true},
+        id: false,
+    }
+
+);
 
 //parent document
 const thoughtSchema = new Schema(
@@ -35,7 +60,7 @@ const thoughtSchema = new Schema(
     reactions:[reactionSchema]//array of nested doc created with reactionSchema
     },
     {
-        toJSON: {virtuals: true},
+        toJSON: {virtuals: true, getters: true},
         id: false,
     }
 );

@@ -16,11 +16,22 @@ const userSchema = new Schema(
         required: true,
         //probably needs regex to validate email
     },
-    thoughts: [thoughtSchema], //array of _id values ref thought model
-    friends:[]//array of _id values ref user model (SELF REFERENCE) 
+    thoughts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Thought',
+        }
+    ], //array of _id values ref thought model
+    friends:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        }
+    ]//array of _id values ref user model (SELF REFERENCE) 
     },
     {
         toJSON: {virtuals: true},
+        id: false,
     }
 );
 
