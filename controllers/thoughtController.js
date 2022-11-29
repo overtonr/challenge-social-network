@@ -6,14 +6,15 @@ const thoughtController = {
 //GET single thought by ID
     getSingleThought(){},
 //POST a new thought : push to associated id to users thoughts arr
-    createNewThought(){},
+    createThought(){},
 //PUT update thought by ID
     updateThought(){},
 //DELETE remove thought by ID
     deleteThought(){},
-}
-
 //POST create reaction stored in single thought's reactions arr
+    addReaction(){},
 //DELETE remove reaction by reactionID
+    deleteReaction(){}
+}
 
 module.exports = thoughtController;
