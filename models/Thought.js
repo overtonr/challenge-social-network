@@ -12,9 +12,16 @@ const reactionSchema = require('./Reaction');
 const thoughtSchema = new Schema({
     thoughtText:{
         //string, required, between 1 &280 characters
+        type: String,
+        required: true,
+        minLength: 1,
+        maxLength: 280,
+
     },
     createdAt:{
         //date, current time default, getter method to format on query
+        type: Date,
+        default: Date.now
     },
     username: {},
     //string, required
@@ -22,3 +29,4 @@ const thoughtSchema = new Schema({
     reactions:[]//array of nested doc created with reactionSchema
     
 });
+//virtual: rectionCount, leng of reactions array
