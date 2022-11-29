@@ -15,10 +15,10 @@ const userController = {
     updateUser(){},
 //DELETE remove user by ID : cascade to remove all associated thoughts
     deleteUser(){},
-}
-
 //POST add friend to user friend list
+    addFriend(){},
 //DELETE remove friend from users friend list
-
+    deleteFriend(){},
+}
 
 module.exports = userController;
