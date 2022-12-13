@@ -8,7 +8,16 @@ const userController = {
         .catch((err) => res.status(500).JSON(err));
     },
 //GET single user by ID
-    getSingleUser(){},
+    getSingleUser(){
+        User.findOne({ _id: req.params.userId })
+      .select('-__v')
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'Invalid user ID' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+    },
 //POST a new user
     createUser(){},
 //PUT update user by ID
