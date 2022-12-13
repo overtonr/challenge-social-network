@@ -60,8 +60,8 @@ const thoughtController = {
     //DELETE remove thought by ID
     deleteThought(req, res) {
         Thought.findOneAndDelete({ _id: params.id })
-            .then((thoughtId) => {
-                if (!thoughtId) {
+            .then((thought) => {
+                if (!thought) {
                     return res.status(404).json({ message: "Invalid thought ID" });
                 }
                 return User.findOneAndUpdate(

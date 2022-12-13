@@ -42,7 +42,21 @@ const userController = {
       });
     },
 //DELETE remove user by ID : cascade to remove all associated thoughts
-    deleteUser(){},
+    deleteUser({ params }, res){
+        User.findOneAndDelete({ _id: params.id})
+        .then((dbUserData) => {
+            if (!dbUserData) {
+              return res.status(404).json({ message: "Invalid user ID" });
+            }
+            // BONUS: get ids of user's `thoughts` and delete them all
+            // $in to find specific things
+            return Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
+          })
+          .then(() => {
+            res.json({ message: "User and linked thoughts deleted" });
+          })
+            .catch((err) => res.status(500).json(err));
+    },
 //POST add friend to user friend list
     addFriend(){},
 //DELETE remove friend from users friend list
