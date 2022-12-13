@@ -19,9 +19,28 @@ const userController = {
       .catch((err) => res.status(500).json(err));
     },
 //POST a new user
-    createUser(){},
+    createUser(){
+        User.create(req.body)
+        .then((user) => res.json(user))
+        .catch((err) => res.status(500).json(err));
+    },
 //PUT update user by ID
-    updateUser(){},
+    updateUser(){
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+        )
+        .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'Invalid user ID' })
+          : res.json(user)
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+    },
 //DELETE remove user by ID : cascade to remove all associated thoughts
     deleteUser(){},
 //POST add friend to user friend list
