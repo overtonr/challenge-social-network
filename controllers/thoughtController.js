@@ -42,12 +42,21 @@ const thoughtController = {
         .catch((err) => res.status(500).json(err));
     },
 //DELETE remove thought by ID
-    deleteThought(req,res){},
+    deleteThought(req,res){
+        Thought.findOneAndUpdate({ _id: req.params.thoughtId })
+        .then((thought) =>
+        !thought
+        ? res.status(404).json({message: 'Invalid thought ID'})
+        : User.deleteMany({ _id: { $in: thought.users }})
+        )
+    .then(() => res.json({ message: 'Thought and users deleted'}))
+    .catch((err) => res.status(500).json(err));
+    },
 //POST create reaction stored in single thought's reactions arr
     addReaction(req,res){
     },
 //DELETE remove reaction by reactionID
     deleteReaction(req,res){}
-}
+};
 
 module.exports = thoughtController;
