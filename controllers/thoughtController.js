@@ -59,24 +59,26 @@ const thoughtController = {
 
     //DELETE remove thought by ID
     deleteThought(req, res) {
-        Thought.findOneAndRemove({ _id: req.params.thoughtId })
-            .then((thought) =>
-                !thought
-                    ? res.status(404).json({ message: 'Invalid thought ID' })
-                    : User.findOneAndUpdate(
-                        { thoughts: req.params.thoughtId },
-                        { $pull: { thoughts: req.params.thoughtId } },
-                        { new: true }
-                    )
-            )
-            .then((user) =>
-                !user
-                    ? res
+        Thought.findOneAndDelete({ _id: params.id })
+            .then((thoughtId) => {
+                if (!thoughtId) {
+                    return res.status(404).json({ message: "Invalid thought ID" });
+                }
+                return User.findOneAndUpdate(
+                    { thoughts: params.id },
+                    { $pull: { thoughts: params.id } },
+                    { new: true }
+                );
+            })
+            .then((user => {
+                if (!user) {
+                    return res
                         .status(404)
-                        .json({ message: 'Thought created, but invalid user ID' })
-                    : res.json({ message: 'Thought created' })
-            )
-            .catch((err) => res.status(500).json(err));
+                        .json({ message: "Invalid user ID" });
+                }
+                res.json({ message: "Thought successfully deleted!" });
+            })
+                .catch((err) => res.status(500).json(err)));
     },
 
     //POST create reaction stored in single thought's reactions arr
